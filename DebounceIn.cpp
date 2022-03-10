@@ -31,7 +31,7 @@ DebounceIn::DebounceIn(PinName pin, PinMode mode) :
     _cb[1] = NULL;
 }
 
-void DebounceIn::rise(Callback<void()> cb, microseconds timeout) {
+void DebounceIn::rise(Callback<void()> cb, int32_t timeout) {
     if (cb) {
         _cb[0] = cb;
         _timeout_interval[0] = timeout;
@@ -44,7 +44,7 @@ void DebounceIn::rise(Callback<void()> cb, microseconds timeout) {
     }
 }
 
-void DebounceIn::fall(Callback<void()> cb, microseconds timeout) {
+void DebounceIn::fall(Callback<void()> cb, int32_t timeout) {
     if (cb) {
         _cb[1] = cb;
         _timeout_interval[1] = timeout;

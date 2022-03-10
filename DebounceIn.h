@@ -26,10 +26,8 @@ SOFTWARE.
 #define DEBOUNCEIN_H
 
 #include "mbed.h"
-#include <chrono>
-using namespace std::chrono;
 
-#define DEFAULT_DEBOUNCE 20ms
+#define DEFAULT_DEBOUNCE 20000
 
 class DebounceIn {
   public:
@@ -40,8 +38,8 @@ class DebounceIn {
     } Type;
 
     DebounceIn(PinName pin, PinMode mode = PullNone);
-    void rise(Callback<void()> cb, microseconds timeout = DEFAULT_DEBOUNCE);
-    void fall(Callback<void()> cb, microseconds timeout = DEFAULT_DEBOUNCE);
+    void rise(Callback<void()> cb, int32_t timeout = DEFAULT_DEBOUNCE);
+    void fall(Callback<void()> cb, int32_t timeout = DEFAULT_DEBOUNCE);
     int32_t read();
 
     operator int();
@@ -54,7 +52,7 @@ class DebounceIn {
     void intFallCb();
     void timeoutRiseCb();
     void timeoutFallCb();
-    microseconds _timeout_interval[2];
+    int32_t _timeout_interval[2];
 };
 
 #endif
