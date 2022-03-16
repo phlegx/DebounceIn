@@ -68,7 +68,7 @@ void DebounceIn::timeoutRiseCb() {
 }
 
 void DebounceIn::intRiseCb() {
-    _timeout[0].attach(callback(this, &DebounceIn::timeoutRiseCb), _timeout_interval[0]);
+    _timeout[0].attach_us(callback(this, &DebounceIn::timeoutRiseCb), _timeout_interval[0]);
     _interrupt.rise(NULL);  // detach interrupt
 }
 
@@ -83,7 +83,7 @@ void DebounceIn::timeoutFallCb() {
 }
 
 void DebounceIn::intFallCb() {
-    _timeout[1].attach(callback(this, &DebounceIn::timeoutFallCb), _timeout_interval[1]);
+    _timeout[1].attach_us(callback(this, &DebounceIn::timeoutFallCb), _timeout_interval[1]);
     _interrupt.fall(NULL);  // detach interrupt
 }
 
